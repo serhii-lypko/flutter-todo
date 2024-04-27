@@ -1,8 +1,8 @@
 
 # ✅ 0. folders & files structure
 # ✅ 1. basic unprotected router
-# 2. in memory todolist page (home)
-#   - implement using state manager?
+# ✅ 2. in memory todolist page (home)
+#   - implement using state manager
 # 3. todo details nested route
 # 4. todos CRUD
 # 5. firestore auth

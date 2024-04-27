@@ -106,14 +106,15 @@ class TodoWidget extends StatelessWidget {
           height: 60.0, // Set a specific height
           padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: Colors.white, // Change color to white
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: Colors.black, width: 2.0), // Add a border
           ),
           child: Center(
             child: Text(
               text,
-              style: TextStyle(color: Colors.white),
+              style:
+                  TextStyle(color: Colors.black), // Change text color to black
             ),
           ),
         ),

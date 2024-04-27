@@ -41,7 +41,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               },
               child: Icon(
                 Icons.list,
-                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+                color: _currentIndex == 0 ? Colors.white : Colors.grey,
               ),
             ),
             GestureDetector(
