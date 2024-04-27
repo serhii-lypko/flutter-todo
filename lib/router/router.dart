@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'bottom_navigation.dart';
 
 // TODO: improve routing organization
-import '../features/home/home_page.dart';
+import '../features/todos/todos_page.dart';
+import '../features/todos/add_todo_page.dart';
+
 import '../features/settings/settings_page.dart';
 
 class AppRouterConfig {
@@ -29,9 +31,6 @@ class AppRouterConfig {
   GoRouteInformationParser get routeInformationParser =>
       router.routeInformationParser;
 
-  static const String homePath = '/home';
-  static const String settingsPath = '/settings';
-
   factory AppRouterConfig() {
     return _instance;
   }
@@ -45,10 +44,19 @@ class AppRouterConfig {
             navigatorKey: homeTabNavigatorKey,
             routes: [
               GoRoute(
-                path: homePath,
+                path: TodosPage.routeName,
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
-                    child: const HomePage(),
+                    child: const TodosPage(),
+                    state: state,
+                  );
+                },
+              ),
+              GoRoute(
+                path: AddTodoPage.routeName,
+                pageBuilder: (context, GoRouterState state) {
+                  return getPage(
+                    child: const AddTodoPage(),
                     state: state,
                   );
                 },
@@ -59,7 +67,7 @@ class AppRouterConfig {
             navigatorKey: settingsTabNavigatorKey,
             routes: [
               GoRoute(
-                path: settingsPath,
+                path: SettingsPage.routeName,
                 pageBuilder: (context, state) {
                   return getPage(
                     child: const SettingsPage(),
@@ -87,7 +95,7 @@ class AppRouterConfig {
 
     router = GoRouter(
       navigatorKey: parentNavigatorKey,
-      initialLocation: homePath,
+      initialLocation: TodosPage.routeName,
       routes: routes,
     );
   }

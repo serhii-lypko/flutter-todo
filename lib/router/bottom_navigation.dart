@@ -19,9 +19,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Global App Bar'),
-      // ),
+      // appBar: AppBar(title: const Text('Global App Bar')),
       body: SafeArea(
         child: widget.child,
       ),
@@ -42,7 +40,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 );
               },
               child: Icon(
-                Icons.home,
+                Icons.list,
                 color: _currentIndex == 0 ? Colors.blue : Colors.grey,
               ),
             ),
