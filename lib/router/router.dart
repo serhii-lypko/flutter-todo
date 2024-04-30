@@ -6,8 +6,9 @@ import 'bottom_navigation.dart';
 // TODO: improve routing organization
 import '../features/todos/todos_page.dart';
 import '../features/todos/add_todo_page.dart';
-
 import '../features/settings/settings_page.dart';
+import '../features/bloc_playground/bloc_playground_page.dart';
+import '../features/word_pairs_overview/word_pairs_overview_page.dart';
 
 class AppRouterConfig {
   static final AppRouterConfig _instance = AppRouterConfig._internal();
@@ -90,12 +91,33 @@ class AppRouterConfig {
             state: state,
           );
         },
-      )
+      ),
+      GoRoute(
+        parentNavigatorKey: parentNavigatorKey,
+        path: CounterPage.routeName,
+        pageBuilder: (context, state) {
+          return getPage(
+            child: const CounterPage(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: parentNavigatorKey,
+        path: WordPairsOverviewPage.routeName,
+        pageBuilder: (context, state) {
+          return getPage(
+            child: const WordPairsOverviewPage(),
+            state: state,
+          );
+        },
+      ),
     ];
 
     router = GoRouter(
       navigatorKey: parentNavigatorKey,
-      initialLocation: TodosPage.routeName,
+      // initialLocation: TodosPage.routeName,
+      initialLocation: WordPairsOverviewPage.routeName,
       routes: routes,
     );
   }
