@@ -6,7 +6,7 @@ import 'bloc/word_pairs_overview_bloc.dart';
 import 'bloc/word_pairs_overview_event.dart';
 import 'bloc/word_pairs_overview_state.dart';
 
-// TODO: centralized logger on the app level
+import '../../packages/repository/repository.dart';
 
 class WordPairsOverviewPage extends StatelessWidget {
   static const routeName = '/word-pairs-overview';
@@ -17,7 +17,8 @@ class WordPairsOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          WordPairsOverviewBloc()..add(const CreateInitialWordPairs()),
+          WordPairsOverviewBloc(repository: context.read<WordPairsRepository>())
+            ..add(const CreateInitialWordPairs()),
       child: const WordPairsOverviewView(),
     );
   }
@@ -35,10 +36,10 @@ class WordPairsOverviewView extends StatelessWidget {
         ),
         body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
           builder: (context, state) {
-            print("--------------------");
-            print("state on page view: ");
-            print(state.wordPairs);
-            print("--------------------");
+            // print("--------------------");
+            // print("state on page view: ");
+            // print(state.wordPairs);
+            // print("--------------------");
 
             return CupertinoScrollbar(
               child: ListView(

@@ -3,22 +3,29 @@ import 'package:bloc/bloc.dart';
 import 'word_pairs_overview_state.dart';
 import 'word_pairs_overview_event.dart';
 
-import '../models/word_pair.dart';
+import '../../../packages/api/models/word_pair.dart';
+import '../../../packages/repository/repository.dart';
 
 // Blocs should never directly emit new states. Instead every state change
 // must be output in response to an incoming event within an EventHandler.
 class WordPairsOverviewBloc
     extends Bloc<WordPairsOverviewEvent, WordPairsOverviewState> {
-  WordPairsOverviewBloc() : super(const WordPairsOverviewState()) {
+  WordPairsOverviewBloc({required WordPairsRepository repository})
+      : _repository = repository,
+        super(const WordPairsOverviewState()) {
     on<CreateInitialWordPairs>(_createInitialWordPairs);
     on<AddWordPair>(_addWordPair);
   }
+
+  final WordPairsRepository _repository;
 
   void _createInitialWordPairs(
     CreateInitialWordPairs event,
     Emitter<WordPairsOverviewState> emit,
   ) {
-    print("event: [_createInitialWordPairs]");
+    _repository.mockFn();
+
+    // print("event: [_createInitialWordPairs]");
 
     List<WordPair> mockWordPairs = [
       WordPair(id: '1', title: 'Mock WordPair 1'),
@@ -33,7 +40,7 @@ class WordPairsOverviewBloc
     AddWordPair event,
     Emitter<WordPairsOverviewState> emit,
   ) {
-    print("event: [_addWordPair]");
+    // print("event: [_addWordPair]");
 
     int nextId = state.wordPairs.length + 1;
     WordPair newWordPair =

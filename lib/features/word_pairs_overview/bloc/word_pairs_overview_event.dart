@@ -8,6 +8,7 @@ sealed class WordPairsOverviewEvent extends Equatable {
 }
 
 // TODO: naming conventions?
+// https://bloclibrary.dev/naming-conventions/
 
 final class CreateInitialWordPairs extends WordPairsOverviewEvent {
   const CreateInitialWordPairs();
