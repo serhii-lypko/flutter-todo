@@ -60,9 +60,64 @@ class WordPairsOverviewView extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            BlocProvider.of<WordPairsOverviewBloc>(context)
-                .add(const AddWordPair());
+            final bloc = BlocProvider.of<WordPairsOverviewBloc>(context);
+
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: Center(
+                    child: TextButton(
+                      child: Text('Add Word Pair'),
+                      onPressed: () {
+                        bloc.add(const AddWordPair());
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                );
+              },
+            );
           },
-        ));
+        )
+
+        // -- -- Full screen option -- --
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.white,
+        //   shape: const CircleBorder(),
+        //   child: const Icon(
+        //     Icons.add,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () {
+        //     showModalBottomSheet(
+        //       context: context,
+        //       isScrollControlled:
+        //           true, // Allow the modal to take up the entire screen
+        //       builder: (context) {
+        //         return Container(
+        //           height: MediaQuery.of(context)
+        //               .size
+        //               .height, // Set the height of the modal to the height of the screen
+        //           child: Center(
+        //             child: TextButton(
+        //               child: Text('Add Word Pair'),
+        //               onPressed: () {
+        //                 BlocProvider.of<WordPairsOverviewBloc>(context)
+        //                     .add(const AddWordPair());
+        //                 Navigator.pop(context); // Close the modal
+        //               },
+        //             ),
+        //           ),
+        //         );
+        //       },
+        //     );
+        //   },
+        // )
+
+        //
+        );
   }
 }
