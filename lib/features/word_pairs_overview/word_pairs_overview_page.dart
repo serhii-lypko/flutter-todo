@@ -9,6 +9,7 @@ import 'bloc/word_pairs_overview_state.dart';
 import '../../packages/repository/repository.dart';
 
 import 'widgets/word_pair_tile.dart';
+import '../../shared/shared.dart';
 
 class WordPairsOverviewPage extends StatelessWidget {
   static const routeName = '/word-pairs-overview';
@@ -62,62 +63,70 @@ class WordPairsOverviewView extends StatelessWidget {
           onPressed: () {
             final bloc = BlocProvider.of<WordPairsOverviewBloc>(context);
 
+            final TextEditingController leftController =
+                TextEditingController();
+            final TextEditingController rightController =
+                TextEditingController();
+
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,
               builder: (context) {
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: Center(
-                    child: TextButton(
-                      child: Text('Add Word Pair'),
-                      onPressed: () {
-                        bloc.add(const AddWordPair());
-                        Navigator.pop(context);
-                      },
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const Text(
+                                'Add Word Pair',
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 60),
+                              CustomTextField(
+                                  controller: leftController,
+                                  placeholder: 'Left'),
+                              const SizedBox(height: 20),
+                              CustomTextField(
+                                  controller: rightController,
+                                  placeholder: 'Right'),
+                              const SizedBox(height: 20),
+                              TextButton(
+                                child: const Text(
+                                  'Add Word Pair',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  final leftWord = leftController.text;
+                                  final rightWord = rightController.text;
+
+                                  // bloc.add(const AddWordPair());
+                                  // Navigator.pop(context);
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 );
               },
             );
           },
-        )
-
-        // -- -- Full screen option -- --
-        // floatingActionButton: FloatingActionButton(
-        //   backgroundColor: Colors.white,
-        //   shape: const CircleBorder(),
-        //   child: const Icon(
-        //     Icons.add,
-        //     color: Colors.black,
-        //   ),
-        //   onPressed: () {
-        //     showModalBottomSheet(
-        //       context: context,
-        //       isScrollControlled:
-        //           true, // Allow the modal to take up the entire screen
-        //       builder: (context) {
-        //         return Container(
-        //           height: MediaQuery.of(context)
-        //               .size
-        //               .height, // Set the height of the modal to the height of the screen
-        //           child: Center(
-        //             child: TextButton(
-        //               child: Text('Add Word Pair'),
-        //               onPressed: () {
-        //                 BlocProvider.of<WordPairsOverviewBloc>(context)
-        //                     .add(const AddWordPair());
-        //                 Navigator.pop(context); // Close the modal
-        //               },
-        //             ),
-        //           ),
-        //         );
-        //       },
-        //     );
-        //   },
-        // )
-
-        //
-        );
+        ));
   }
 }
