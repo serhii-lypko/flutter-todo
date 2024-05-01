@@ -7,6 +7,8 @@ import 'app_bloc_observer.dart';
 
 import 'packages/repository/repository.dart';
 
+// dart run build_runner build
+
 void main() {
   AppRouterConfig.instance;
 

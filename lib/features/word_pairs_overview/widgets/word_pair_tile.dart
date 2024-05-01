@@ -5,10 +5,10 @@ import '../../../packages/api/models/word_pair.dart';
 class WordPairListTile extends StatelessWidget {
   const WordPairListTile({
     required this.wordPair,
-    super.key,
+    Key? key,
     this.onDismissed,
     this.onTap,
-  });
+  }) : super(key: key);
 
   final WordPair wordPair;
   final DismissDirectionCallback? onDismissed;
@@ -16,8 +16,6 @@ class WordPairListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-
     return Dismissible(
       key: Key('wordPairListTile_dismissible_${wordPair.id}'),
       onDismissed: onDismissed,
@@ -30,12 +28,27 @@ class WordPairListTile extends StatelessWidget {
           color: Color(0xAAFFFFFF),
         ),
       ),
-      child: ListTile(
-        onTap: onTap,
-        title: Text(
-          wordPair.title,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+      child: Card(
+        margin: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                wordPair.left,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18.0),
+              ),
+              Text(
+                wordPair.right,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18.0),
+              ),
+            ],
+          ),
         ),
       ),
     );

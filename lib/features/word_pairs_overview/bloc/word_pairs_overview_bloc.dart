@@ -27,9 +27,9 @@ class WordPairsOverviewBloc
     _repository.mockFn();
 
     List<WordPair> mockWordPairs = [
-      WordPair(id: '1', title: 'Mock WordPair 1'),
-      WordPair(id: '2', title: 'Mock WordPair 2'),
-      WordPair(id: '3', title: 'Mock WordPair 3'),
+      WordPair(id: '1', left: 'Left 1', right: 'Right 1'),
+      WordPair(id: '2', left: 'Left 2', right: 'Right 2'),
+      WordPair(id: '3', left: 'Left 3', right: 'Right 3'),
     ];
 
     emit(state.copyWith(wordPairs: mockWordPairs));
@@ -42,7 +42,8 @@ class WordPairsOverviewBloc
     const uuid = Uuid();
     String id = uuid.v4();
 
-    WordPair newWordPair = WordPair(id: id, title: event.pair[0]);
+    WordPair newWordPair =
+        WordPair(id: id, left: event.pair[0], right: event.pair[1]);
 
     emit(state.copyWith(
         wordPairs: List.from(state.wordPairs)..add(newWordPair)));

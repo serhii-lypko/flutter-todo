@@ -34,21 +34,24 @@ class WordPairsOverviewView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Word Pairs Overview"),
+          title: const Text("Word Pairs"),
           actions: const [],
         ),
         body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
           builder: (context, state) {
             return CupertinoScrollbar(
-              child: ListView(
-                children: [
-                  for (final wordPair in state.wordPairs)
-                    WordPairListTile(
-                      wordPair: wordPair,
-                      onDismissed: (_) {},
-                      onTap: () {},
-                    ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: ListView(
+                  children: [
+                    for (final wordPair in state.wordPairs)
+                      WordPairListTile(
+                        wordPair: wordPair,
+                        onDismissed: (_) {},
+                        onTap: () {},
+                      ),
+                  ],
+                ),
               ),
             );
           },

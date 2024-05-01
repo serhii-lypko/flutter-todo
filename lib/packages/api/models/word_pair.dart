@@ -11,7 +11,8 @@ part 'word_pair.g.dart';
 @JsonSerializable()
 class WordPair extends Equatable {
   WordPair({
-    required this.title,
+    required this.left,
+    required this.right,
     String? id,
   })  : assert(
           id == null || id.isNotEmpty,
@@ -20,15 +21,18 @@ class WordPair extends Equatable {
         id = id ?? const Uuid().v4();
 
   final String id;
-  final String title;
+  final String left;
+  final String right;
 
   WordPair copyWith({
     String? id,
-    String? title,
+    String? left,
+    String? right,
   }) {
     return WordPair(
       id: id ?? this.id,
-      title: title ?? this.title,
+      left: left ?? this.left,
+      right: right ?? this.right,
     );
   }
 
@@ -37,5 +41,5 @@ class WordPair extends Equatable {
   JsonMap toJson() => _$WordPairToJson(this);
 
   @override
-  List<Object> get props => [id, title];
+  List<Object> get props => [id, left, right];
 }

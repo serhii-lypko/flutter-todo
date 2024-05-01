@@ -7,9 +7,13 @@ part of 'word_pair.dart';
 // **************************************************************************
 
 WordPair _$WordPairFromJson(Map<String, dynamic> json) => WordPair(
-      title: json['title'] as String,
+      left: json['left'] as String,
+      right: json['right'] as String,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$WordPairToJson(WordPair instance) => <String, dynamic>{
-      'title': instance.title,
+      'id': instance.id,
+      'left': instance.left,
+      'right': instance.right,
     };
