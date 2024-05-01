@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:uuid/uuid.dart';
 
 import 'word_pairs_overview_state.dart';
 import 'word_pairs_overview_event.dart';
@@ -13,14 +14,14 @@ class WordPairsOverviewBloc
   WordPairsOverviewBloc({required WordPairsRepository repository})
       : _repository = repository,
         super(const WordPairsOverviewState()) {
-    on<CreateInitialWordPairs>(_createInitialWordPairs);
-    on<AddWordPair>(_addWordPair);
+    on<InitialWordPairsCreated>(_initialWordPairsCreated);
+    on<WordPairAdded>(_wordPairAdded);
   }
 
   final WordPairsRepository _repository;
 
-  void _createInitialWordPairs(
-    CreateInitialWordPairs event,
+  void _initialWordPairsCreated(
+    InitialWordPairsCreated event,
     Emitter<WordPairsOverviewState> emit,
   ) {
     _repository.mockFn();
@@ -34,13 +35,14 @@ class WordPairsOverviewBloc
     emit(state.copyWith(wordPairs: mockWordPairs));
   }
 
-  void _addWordPair(
-    AddWordPair event,
+  void _wordPairAdded(
+    WordPairAdded event,
     Emitter<WordPairsOverviewState> emit,
   ) {
-    int nextId = state.wordPairs.length + 1;
-    WordPair newWordPair =
-        WordPair(id: nextId.toString(), title: 'New Word Pair');
+    const uuid = Uuid();
+    String id = uuid.v4();
+
+    WordPair newWordPair = WordPair(id: id, title: event.pair[0]);
 
     emit(state.copyWith(
         wordPairs: List.from(state.wordPairs)..add(newWordPair)));

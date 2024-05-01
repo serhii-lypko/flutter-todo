@@ -21,7 +21,7 @@ class WordPairsOverviewPage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           WordPairsOverviewBloc(repository: context.read<WordPairsRepository>())
-            ..add(const CreateInitialWordPairs()),
+            ..add(const InitialWordPairsCreated()),
       child: const WordPairsOverviewView(),
     );
   }
@@ -113,8 +113,9 @@ class WordPairsOverviewView extends StatelessWidget {
                                   final leftWord = leftController.text;
                                   final rightWord = rightController.text;
 
-                                  // bloc.add(const AddWordPair());
-                                  // Navigator.pop(context);
+                                  bloc.add(
+                                      WordPairAdded([leftWord, rightWord]));
+                                  Navigator.pop(context);
                                 },
                               )
                             ],

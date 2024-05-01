@@ -7,13 +7,15 @@ sealed class WordPairsOverviewEvent extends Equatable {
   List<Object> get props => [];
 }
 
-// TODO: naming conventions?
-// https://bloclibrary.dev/naming-conventions/
-
-final class CreateInitialWordPairs extends WordPairsOverviewEvent {
-  const CreateInitialWordPairs();
+final class InitialWordPairsCreated extends WordPairsOverviewEvent {
+  const InitialWordPairsCreated();
 }
 
-final class AddWordPair extends WordPairsOverviewEvent {
-  const AddWordPair();
+final class WordPairAdded extends WordPairsOverviewEvent {
+  const WordPairAdded(this.pair);
+
+  final List<String> pair;
+
+  @override
+  List<Object> get props => [pair];
 }

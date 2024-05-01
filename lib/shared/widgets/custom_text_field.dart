@@ -16,6 +16,9 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       placeholder: placeholder,
       placeholderStyle: const TextStyle(
+        color: CupertinoColors.systemGrey,
+      ),
+      style: const TextStyle(
         color: CupertinoColors.white,
       ),
       decoration: BoxDecoration(
