@@ -25,8 +25,6 @@ class WordPairsOverviewBloc
   ) {
     _repository.mockFn();
 
-    // print("event: [_createInitialWordPairs]");
-
     List<WordPair> mockWordPairs = [
       WordPair(id: '1', title: 'Mock WordPair 1'),
       WordPair(id: '2', title: 'Mock WordPair 2'),
@@ -40,8 +38,6 @@ class WordPairsOverviewBloc
     AddWordPair event,
     Emitter<WordPairsOverviewState> emit,
   ) {
-    // print("event: [_addWordPair]");
-
     int nextId = state.wordPairs.length + 1;
     WordPair newWordPair =
         WordPair(id: nextId.toString(), title: 'New Word Pair');

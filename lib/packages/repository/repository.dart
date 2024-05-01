@@ -10,7 +10,5 @@ class WordPairsRepository {
     return Stream.value([]);
   }
 
-  void mockFn() {
-    print("----- [] ----- repository mock fn");
-  }
+  void mockFn() {}
 }

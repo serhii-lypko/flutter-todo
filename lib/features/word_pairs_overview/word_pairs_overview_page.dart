@@ -8,6 +8,8 @@ import 'bloc/word_pairs_overview_state.dart';
 
 import '../../packages/repository/repository.dart';
 
+import 'widgets/word_pair_tile.dart';
+
 class WordPairsOverviewPage extends StatelessWidget {
   static const routeName = '/word-pairs-overview';
 
@@ -36,14 +38,16 @@ class WordPairsOverviewView extends StatelessWidget {
         ),
         body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
           builder: (context, state) {
-            // print("--------------------");
-            // print("state on page view: ");
-            // print(state.wordPairs);
-            // print("--------------------");
-
             return CupertinoScrollbar(
               child: ListView(
-                children: [],
+                children: [
+                  for (final wordPair in state.wordPairs)
+                    WordPairListTile(
+                      wordPair: wordPair,
+                      onDismissed: (_) {},
+                      onTap: () {},
+                    ),
+                ],
               ),
             );
           },
