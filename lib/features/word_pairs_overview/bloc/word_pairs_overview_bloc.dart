@@ -7,6 +7,8 @@ import 'word_pairs_overview_event.dart';
 import '../../../packages/api/models/word_pair.dart';
 import '../../../packages/repository/repository.dart';
 
+import '../../../packages/database/database.dart';
+
 // Blocs should never directly emit new states. Instead every state change
 // must be output in response to an incoming event within an EventHandler.
 class WordPairsOverviewBloc
@@ -20,11 +22,13 @@ class WordPairsOverviewBloc
 
   final WordPairsRepository _repository;
 
-  void _initialWordPairsCreated(
+  Future<void> _initialWordPairsCreated(
     InitialWordPairsCreated event,
     Emitter<WordPairsOverviewState> emit,
-  ) {
-    _repository.mockFn();
+  ) async {
+    // List<WordPairItem> dataFromDb = await _repository.testGetItemsFromDb();
+    // print("data from DB");
+    // print(dataFromDb);
 
     List<WordPair> mockWordPairs = [
       WordPair(id: '1', left: 'Left 1', right: 'Right 1'),
@@ -35,10 +39,10 @@ class WordPairsOverviewBloc
     emit(state.copyWith(wordPairs: mockWordPairs));
   }
 
-  void _wordPairAdded(
+  Future<void> _wordPairAdded(
     WordPairAdded event,
     Emitter<WordPairsOverviewState> emit,
-  ) {
+  ) async {
     const uuid = Uuid();
     String id = uuid.v4();
 
@@ -47,5 +51,7 @@ class WordPairsOverviewBloc
 
     emit(state.copyWith(
         wordPairs: List.from(state.wordPairs)..add(newWordPair)));
+
+    await _repository.testAddItemToDb();
   }
 }

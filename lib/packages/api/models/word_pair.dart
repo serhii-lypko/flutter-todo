@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
+// import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
-import 'json_map.dart';
+// import 'json_map.dart';
 
-part 'word_pair.g.dart';
+// part 'word_pair.g.dart';
 
+// @JsonSerializable()
 @immutable
-@JsonSerializable()
 class WordPair extends Equatable {
   WordPair({
     required this.left,
@@ -36,9 +36,9 @@ class WordPair extends Equatable {
     );
   }
 
-  static WordPair fromJson(JsonMap json) => _$WordPairFromJson(json);
+  // static WordPair fromJson(JsonMap json) => _$WordPairFromJson(json);
 
-  JsonMap toJson() => _$WordPairToJson(this);
+  // JsonMap toJson() => _$WordPairToJson(this);
 
   @override
   List<Object> get props => [id, left, right];

@@ -6,17 +6,19 @@ import 'router/router.dart';
 import 'app_bloc_observer.dart';
 
 import 'packages/repository/repository.dart';
-
-// dart run build_runner build
+import 'packages/database/database.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   AppRouterConfig.instance;
 
   Bloc.observer = const AppBlocObserver();
 
-  const repository = WordPairsRepository();
+  final database = AppDatabase();
 
-  runApp(const App(repository: repository));
+  final repository = WordPairsRepository(database: database);
+
+  runApp(App(repository: repository));
 }
 
 class App extends StatelessWidget {

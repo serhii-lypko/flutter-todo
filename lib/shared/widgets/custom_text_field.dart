@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
         color: CupertinoColors.black,
         borderRadius: BorderRadius.circular(7.0),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 17.0, horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 15.0),
     );
   }
 }
