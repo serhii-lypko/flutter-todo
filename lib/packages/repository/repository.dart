@@ -11,7 +11,7 @@ import '../api/api.dart';
 // the repository layer should be able to interact with multiple data providers
 // and perform transformations on the data before handing the result to the business logic layer
 
-// TODO: rename the file
+// TODO: more specific name for a folder and a file
 
 class WordPairsRepository {
   const WordPairsRepository({

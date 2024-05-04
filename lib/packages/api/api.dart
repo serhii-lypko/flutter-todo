@@ -1,5 +1,6 @@
 import '../data_provider/models/word_pair.dart';
 
+// TODO: better name for a folder and a file
 abstract class PersistenceApi {
   const PersistenceApi();
 

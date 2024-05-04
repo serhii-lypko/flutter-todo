@@ -25,7 +25,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       ),
       bottomNavigationBar: Container(
         height: 60,
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -56,7 +56,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               },
               child: Icon(
                 Icons.settings,
-                color: _currentIndex == 1 ? Colors.blue : Colors.grey,
+                color: _currentIndex == 1 ? Colors.white : Colors.grey,
               ),
             ),
           ],
