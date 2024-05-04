@@ -47,7 +47,10 @@ class WordPairsOverviewView extends StatelessWidget {
                     for (final wordPair in state.wordPairs)
                       WordPairListTile(
                         wordPair: wordPair,
-                        onDismissed: (_) {},
+                        onDismissed: (_) {
+                          BlocProvider.of<WordPairsOverviewBloc>(context)
+                              .add(WordPairDismissed(wordPair.id));
+                        },
                         onTap: () {},
                       ),
                   ],

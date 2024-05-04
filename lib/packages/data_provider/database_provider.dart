@@ -39,6 +39,10 @@ class DatabaseProvider extends PersistenceApi {
   }
 
   @override
-  Future<void> addNote(String left, String right) =>
+  Future<void> addWordPair(String left, String right) =>
       _objectBoxStore._wordPairBox.putAsync(WordPair(left, right));
+
+  @override
+  Future<void> deleteWordPair(int recordId) =>
+      _objectBoxStore._wordPairBox.removeAsync(recordId);
 }

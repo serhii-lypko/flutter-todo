@@ -5,5 +5,7 @@ abstract class PersistenceApi {
 
   Stream<List<WordPair>> getWordPairs();
 
-  Future<void> addNote(String left, String right);
+  Future<void> addWordPair(String left, String right);
+
+  Future<void> deleteWordPair(int recordId);
 }

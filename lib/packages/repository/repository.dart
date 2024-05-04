@@ -11,6 +11,8 @@ import '../api/api.dart';
 // the repository layer should be able to interact with multiple data providers
 // and perform transformations on the data before handing the result to the business logic layer
 
+// TODO: rename the file
+
 class WordPairsRepository {
   const WordPairsRepository({
     required PersistenceApi persistenceApi,
@@ -22,7 +24,11 @@ class WordPairsRepository {
     return _persistenceApi.getWordPairs();
   }
 
-  Future<void> addNote() async {
-    await _persistenceApi.addNote("left", "right");
+  Future<void> addWordPair(String left, String right) async {
+    await _persistenceApi.addWordPair(left, right);
+  }
+
+  Future<void> deleteWordPair(int recordId) async {
+    await _persistenceApi.deleteWordPair(recordId);
   }
 }

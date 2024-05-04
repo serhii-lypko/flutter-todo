@@ -36,15 +36,13 @@ class WordPairListTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                // wordPair.left,
-                "Mock left",
+                wordPair.left,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 18.0),
               ),
               Text(
-                // wordPair.right,
-                "Mock right",
+                wordPair.right,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 18.0),

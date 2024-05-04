@@ -17,6 +17,7 @@ Future<void> main() async {
   final objectBoxStore = await ObjectBox.create();
   final databaseProvider = DatabaseProvider(objectBoxStore: objectBoxStore);
 
+  // TODO: how would I set up more then 1 repository? 🤔
   final repository = WordPairsRepository(persistenceApi: databaseProvider);
 
   runApp(App(repository: repository));
