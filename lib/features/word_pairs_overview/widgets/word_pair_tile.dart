@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../packages/api/models/word_pair.dart';
+import '../../../packages/data_provider/models/word_pair.dart';
 
 class WordPairListTile extends StatelessWidget {
   const WordPairListTile({
@@ -36,13 +36,15 @@ class WordPairListTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                wordPair.left,
+                // wordPair.left,
+                "Mock left",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 18.0),
               ),
               Text(
-                wordPair.right,
+                // wordPair.right,
+                "Mock right",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 18.0),

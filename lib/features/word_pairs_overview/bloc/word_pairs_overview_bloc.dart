@@ -4,7 +4,9 @@ import 'package:uuid/uuid.dart';
 import 'word_pairs_overview_state.dart';
 import 'word_pairs_overview_event.dart';
 
-import '../../../packages/api/models/word_pair.dart';
+// import '../../../packages/api/models/word_pair.dart';
+import '../../../packages/data_provider/models/word_pair.dart';
+
 import '../../../packages/repository/repository.dart';
 
 // import '../../../packages/data_provider/database.dart';
@@ -26,23 +28,40 @@ class WordPairsOverviewBloc
     InitialWordPairsCreated event,
     Emitter<WordPairsOverviewState> emit,
   ) async {
+    print(state);
+
+    await emit.forEach<List<WordPair>>(
+      _repository.getWordPairs(),
+      onData: (wordPairs) => state.copyWith(
+        wordPairs: wordPairs,
+      ),
+    );
+
+    print(state);
+
+    // Stream<List<WordPair>> data = _repository.getWordPairs();
+
     // List<WordPairItem> dataFromDb = await _repository.testGetItemsFromDb();
-    // print("data from DB");
-    // print(dataFromDb);
 
-    List<WordPair> mockWordPairs = [
-      WordPair(id: '1', left: 'Left 1', right: 'Right 1'),
-      WordPair(id: '2', left: 'Left 2', right: 'Right 2'),
-      WordPair(id: '3', left: 'Left 3', right: 'Right 3'),
-    ];
+    // data.listen((List<WordPair> wordPairs) {
+    //   print(wordPairs);
+    // });
 
-    emit(state.copyWith(wordPairs: mockWordPairs));
+    // List<WordPair> mockWordPairs = [
+    //   WordPair(id: '1', left: 'Left 1', right: 'Right 1'),
+    //   WordPair(id: '2', left: 'Left 2', right: 'Right 2'),
+    //   WordPair(id: '3', left: 'Left 3', right: 'Right 3'),
+    // ];
+
+    // emit(state.copyWith(wordPairs: mockWordPairs));
   }
 
   Future<void> _wordPairAdded(
     WordPairAdded event,
     Emitter<WordPairsOverviewState> emit,
   ) async {
+    await _repository.addNote();
+
     // const uuid = Uuid();
     // String id = uuid.v4();
 

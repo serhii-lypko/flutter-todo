@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../packages/api/models/word_pair.dart';
+import '../../../packages/data_provider/models/word_pair.dart';
 
 final class WordPairsOverviewState extends Equatable {
   const WordPairsOverviewState({

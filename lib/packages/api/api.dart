@@ -1,9 +1,9 @@
-import './models/word_pair.dart';
+import '../data_provider/models/word_pair.dart';
 
 abstract class PersistenceApi {
   const PersistenceApi();
 
-  // Stream<List<WordPair>> getWordPairs();
+  Stream<List<WordPair>> getWordPairs();
 
-  // Future<void> close();
+  Future<void> addNote(String left, String right);
 }

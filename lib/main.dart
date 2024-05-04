@@ -8,13 +8,14 @@ import 'app_bloc_observer.dart';
 import 'packages/repository/repository.dart';
 import 'packages/data_provider/database_provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppRouterConfig.instance;
 
   Bloc.observer = const AppBlocObserver();
 
-  final databaseProvider = DatabaseProvider();
+  final objectBoxStore = await ObjectBox.create();
+  final databaseProvider = DatabaseProvider(objectBoxStore: objectBoxStore);
 
   final repository = WordPairsRepository(persistenceApi: databaseProvider);
 

@@ -1,4 +1,4 @@
-import '../api/models/word_pair.dart';
+import '../data_provider/models/word_pair.dart';
 
 import '../api/api.dart';
 
@@ -19,6 +19,10 @@ class WordPairsRepository {
   final PersistenceApi _persistenceApi;
 
   Stream<List<WordPair>> getWordPairs() {
-    return Stream.value([]);
+    return _persistenceApi.getWordPairs();
+  }
+
+  Future<void> addNote() async {
+    await _persistenceApi.addNote("left", "right");
   }
 }
