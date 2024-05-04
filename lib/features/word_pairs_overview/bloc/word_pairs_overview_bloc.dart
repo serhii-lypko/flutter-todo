@@ -7,7 +7,7 @@ import 'word_pairs_overview_event.dart';
 import '../../../packages/api/models/word_pair.dart';
 import '../../../packages/repository/repository.dart';
 
-import '../../../packages/database/database.dart';
+// import '../../../packages/data_provider/database.dart';
 
 // Blocs should never directly emit new states. Instead every state change
 // must be output in response to an incoming event within an EventHandler.
@@ -43,15 +43,15 @@ class WordPairsOverviewBloc
     WordPairAdded event,
     Emitter<WordPairsOverviewState> emit,
   ) async {
-    const uuid = Uuid();
-    String id = uuid.v4();
+    // const uuid = Uuid();
+    // String id = uuid.v4();
 
-    WordPair newWordPair =
-        WordPair(id: id, left: event.pair[0], right: event.pair[1]);
+    // WordPair newWordPair =
+    //     WordPair(id: id, left: event.pair[0], right: event.pair[1]);
 
-    emit(state.copyWith(
-        wordPairs: List.from(state.wordPairs)..add(newWordPair)));
+    // emit(state.copyWith(
+    //     wordPairs: List.from(state.wordPairs)..add(newWordPair)));
 
-    await _repository.testAddItemToDb();
+    // await _repository.testAddItemToDb();
   }
 }

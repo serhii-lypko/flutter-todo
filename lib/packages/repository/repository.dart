@@ -1,37 +1,24 @@
 import '../api/models/word_pair.dart';
 
-import '../database/database.dart';
+import '../api/api.dart';
+
+// The repository layer is a wrapper around one or more data providers
+// with which the Bloc Layer communicates.
 
 // each repository generally manages a single domain
 // Packages in the repository layer should generally only interact with the data layer
 
+// the repository layer should be able to interact with multiple data providers
+// and perform transformations on the data before handing the result to the business logic layer
+
 class WordPairsRepository {
   const WordPairsRepository({
-    required AppDatabase database,
-  }) : _database = database;
+    required PersistenceApi persistenceApi,
+  }) : _persistenceApi = persistenceApi;
 
-  final AppDatabase _database;
+  final PersistenceApi _persistenceApi;
 
   Stream<List<WordPair>> getWordPairs() {
     return Stream.value([]);
-  }
-
-  Future<List<WordPairItem>> testGetItemsFromDb() async {
-    List<WordPairItem> allItems =
-        await _database.select(_database.wordPairItems).get();
-
-    return allItems;
-  }
-
-  Future<void> testAddItemToDb() async {
-    await _database.into(_database.wordPairItems).insert(
-        WordPairItemsCompanion.insert(
-            left: "this is left", right: "right 2101"));
-
-    List<WordPairItem> allItems = await testGetItemsFromDb();
-
-    print('testAddItemToDb (after add): ');
-    print(allItems);
-    print("-- -- -- -- -- -- --");
   }
 }

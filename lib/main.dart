@@ -6,7 +6,7 @@ import 'router/router.dart';
 import 'app_bloc_observer.dart';
 
 import 'packages/repository/repository.dart';
-import 'packages/database/database.dart';
+import 'packages/data_provider/database_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +14,9 @@ void main() {
 
   Bloc.observer = const AppBlocObserver();
 
-  final database = AppDatabase();
+  final databaseProvider = DatabaseProvider();
 
-  final repository = WordPairsRepository(database: database);
+  final repository = WordPairsRepository(persistenceApi: databaseProvider);
 
   runApp(App(repository: repository));
 }
