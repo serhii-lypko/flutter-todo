@@ -14,6 +14,7 @@ import 'packages/repository/settings_repository.dart';
 import './theme/bloc.dart';
 
 // TODO: how to implement app init? (load theme & stuff)
+// including very first time run -> setting up settings in DB etc.
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +63,8 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ThemeBloc(),
+      create: (context) =>
+          ThemeBloc(repository: context.read<SettingsRepository>()),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
