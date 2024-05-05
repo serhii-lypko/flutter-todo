@@ -1,91 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'bottom_navigation.dart';
+// TODO: cenralized routes export from the featurs
 
 // TODO: improve routing organization
 import '../features/settings/settings_page.dart';
 import '../features/word_pairs_overview/word_pairs_overview_page.dart';
 
 class AppRouterConfig {
-  static final AppRouterConfig _instance = AppRouterConfig._internal();
-
   static AppRouterConfig get instance => _instance;
+  static final AppRouterConfig _instance = AppRouterConfig._internal();
 
   static late final GoRouter router;
 
   static final GlobalKey<NavigatorState> parentNavigatorKey =
       GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> homeTabNavigatorKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> settingsTabNavigatorKey =
-      GlobalKey<NavigatorState>();
-
-  BuildContext get context =>
-      router.routerDelegate.navigatorKey.currentContext!;
-
-  GoRouterDelegate get routerDelegate => router.routerDelegate;
-
-  GoRouteInformationParser get routeInformationParser =>
-      router.routeInformationParser;
-
-  factory AppRouterConfig() {
-    return _instance;
-  }
 
   AppRouterConfig._internal() {
-    final routes = [
-      StatefulShellRoute.indexedStack(
-        parentNavigatorKey: parentNavigatorKey,
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: homeTabNavigatorKey,
-            routes: [
-              GoRoute(
-                path: WordPairsOverviewPage.routeName,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const WordPairsOverviewPage(),
-                    state: state,
-                  );
-                },
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: settingsTabNavigatorKey,
-            routes: [
-              GoRoute(
-                path: SettingsPage.routeName,
-                pageBuilder: (context, state) {
-                  return getPage(
-                    child: const SettingsPage(),
-                    state: state,
-                  );
-                },
-              ),
-            ],
-          ),
-        ],
-        pageBuilder: (
-          BuildContext context,
-          GoRouterState state,
-          StatefulNavigationShell navigationShell,
-        ) {
-          return getPage(
-            child: BottomNavigationPage(
-              child: navigationShell,
-            ),
-            state: state,
-          );
-        },
-      ),
-    ];
-
     router = GoRouter(
       navigatorKey: parentNavigatorKey,
       initialLocation: WordPairsOverviewPage.routeName,
-      routes: routes,
+      routes: [
+        GoRoute(
+          path: WordPairsOverviewPage.routeName,
+          pageBuilder: (context, GoRouterState state) {
+            return getPage(
+              child: const WordPairsOverviewPage(),
+              state: state,
+            );
+          },
+        ),
+        GoRoute(
+          path: SettingsPage.routeName,
+          pageBuilder: (context, GoRouterState state) {
+            return getPage(
+              child: const SettingsPage(),
+              state: state,
+            );
+          },
+        ),
+      ],
     );
   }
 

@@ -13,6 +13,7 @@ import '../../shared/shared.dart';
 
 // FIXME
 import './widgets/filter_button.dart';
+import './widgets/settings_link_button.dart';
 
 class WordPairsOverviewPage extends StatelessWidget {
   static const routeName = '/word-pairs-overview';
@@ -41,7 +42,7 @@ class WordPairsOverviewView extends StatelessWidget {
           actions: const [
             // FIXME
             TodosOverviewFilterButton(),
-            TodosOverviewFilterButton(),
+            SettingsLinkButton(),
           ],
         ),
         body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
