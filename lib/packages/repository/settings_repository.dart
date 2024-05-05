@@ -9,6 +9,6 @@ class SettingsRepository {
   final ObjectBoxDBProvider _dbProvider;
 
   void getUserSettings() {
-    //
+    print('getUserSettings called repository --- [] ---');
   }
 }

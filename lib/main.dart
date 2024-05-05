@@ -5,8 +5,10 @@ import 'router/router.dart';
 
 import 'app_bloc_observer.dart';
 
-import 'packages/repository/word_pairs_repository.dart';
 import 'packages/data_provider/database_provider.dart';
+
+import 'packages/repository/word_pairs_repository.dart';
+import 'packages/repository/settings_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,19 +19,33 @@ Future<void> main() async {
   final dbProvider = await ObjectBoxDBProvider.create();
 
   final wordPairsRepository = WordPairsRepository(dbProvider: dbProvider);
+  final settingsRepository = SettingsRepository(dbProvider: dbProvider);
 
-  runApp(App(repository: wordPairsRepository));
+  runApp(App(
+      wordPairsRepository: wordPairsRepository,
+      settingsRepository: settingsRepository));
 }
 
 class App extends StatelessWidget {
-  const App({required this.repository, super.key});
+  const App(
+      {required this.wordPairsRepository,
+      required this.settingsRepository,
+      super.key});
 
-  final WordPairsRepository repository;
+  final WordPairsRepository wordPairsRepository;
+  final SettingsRepository settingsRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: repository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<WordPairsRepository>(
+          create: (context) => wordPairsRepository,
+        ),
+        RepositoryProvider<SettingsRepository>(
+          create: (context) => settingsRepository,
+        ),
+      ],
       child: const AppView(),
     );
   }
