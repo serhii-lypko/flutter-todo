@@ -2,47 +2,22 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import '../../objectbox.g.dart';
 
-import './models/word_pair.dart';
+import 'models.dart';
 
-import '../api/api.dart';
-
-class ObjectBox {
-  ObjectBox();
+class ObjectBoxDBProvider {
+  ObjectBoxDBProvider();
 
   late final Store store;
-  late final Box<WordPair> _wordPairBox;
+  late final Box<WordPair> wordPairBox;
 
-  ObjectBox._create(this.store) {
-    _wordPairBox = Box<WordPair>(store);
+  ObjectBoxDBProvider._create(this.store) {
+    wordPairBox = Box<WordPair>(store);
   }
 
-  static Future<ObjectBox> create() async {
+  static Future<ObjectBoxDBProvider> create() async {
     final docsDir = await getApplicationDocumentsDirectory();
     final store = await openStore(directory: p.join(docsDir.path, "obx-db"));
 
-    return ObjectBox._create(store);
+    return ObjectBoxDBProvider._create(store);
   }
-}
-
-class DatabaseProvider extends PersistenceApi {
-  DatabaseProvider({
-    required ObjectBox objectBoxStore,
-  }) : _objectBoxStore = objectBoxStore;
-
-  final ObjectBox _objectBoxStore;
-
-  @override
-  Stream<List<WordPair>> getWordPairs() {
-    final builder = _objectBoxStore._wordPairBox.query();
-
-    return builder.watch(triggerImmediately: true).map((query) => query.find());
-  }
-
-  @override
-  Future<void> addWordPair(String left, String right) =>
-      _objectBoxStore._wordPairBox.putAsync(WordPair(left, right));
-
-  @override
-  Future<void> deleteWordPair(int recordId) =>
-      _objectBoxStore._wordPairBox.removeAsync(recordId);
 }

@@ -10,3 +10,14 @@ class WordPair {
 
   WordPair(this.left, this.right);
 }
+
+@Entity()
+class UserSettings {
+  @Id()
+  int id = 0;
+
+  // TODO: enum
+  bool darkMode;
+
+  UserSettings({required this.darkMode});
+}

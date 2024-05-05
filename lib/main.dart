@@ -5,7 +5,7 @@ import 'router/router.dart';
 
 import 'app_bloc_observer.dart';
 
-import 'packages/repository/repository.dart';
+import 'packages/repository/word_pairs_repository.dart';
 import 'packages/data_provider/database_provider.dart';
 
 Future<void> main() async {
@@ -14,13 +14,11 @@ Future<void> main() async {
 
   Bloc.observer = const AppBlocObserver();
 
-  final objectBoxStore = await ObjectBox.create();
-  final databaseProvider = DatabaseProvider(objectBoxStore: objectBoxStore);
+  final dbProvider = await ObjectBoxDBProvider.create();
 
-  // TODO: how would I set up more then 1 repository? 🤔
-  final repository = WordPairsRepository(persistenceApi: databaseProvider);
+  final wordPairsRepository = WordPairsRepository(dbProvider: dbProvider);
 
-  runApp(App(repository: repository));
+  runApp(App(repository: wordPairsRepository));
 }
 
 class App extends StatelessWidget {

@@ -15,7 +15,7 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'packages/data_provider/models/word_pair.dart';
+import 'packages/data_provider/models.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -40,6 +40,25 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(3, 3137754428412929095),
             name: 'right',
             type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(2, 5476825724207937318),
+      name: 'UserSettings',
+      lastPropertyId: const obx_int.IdUid(2, 6821659371431700654),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3915535458084119597),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 6821659371431700654),
+            name: 'darkMode',
+            type: 1,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -81,7 +100,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 1879677691561852661),
+      lastEntityId: const obx_int.IdUid(2, 5476825724207937318),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -123,6 +142,31 @@ obx_int.ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
+        }),
+    UserSettings: obx_int.EntityDefinition<UserSettings>(
+        model: _entities[1],
+        toOneRelations: (UserSettings object) => [],
+        toManyRelations: (UserSettings object) => {},
+        getId: (UserSettings object) => object.id,
+        setId: (UserSettings object, int id) {
+          object.id = id;
+        },
+        objectToFB: (UserSettings object, fb.Builder fbb) {
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addBool(1, object.darkMode);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final darkModeParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 6, false);
+          final object = UserSettings(darkMode: darkModeParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
         })
   };
 
@@ -142,4 +186,15 @@ class WordPair_ {
   /// see [WordPair.right]
   static final right =
       obx.QueryStringProperty<WordPair>(_entities[0].properties[2]);
+}
+
+/// [UserSettings] entity fields to define ObjectBox queries.
+class UserSettings_ {
+  /// see [UserSettings.id]
+  static final id =
+      obx.QueryIntegerProperty<UserSettings>(_entities[1].properties[0]);
+
+  /// see [UserSettings.darkMode]
+  static final darkMode =
+      obx.QueryBooleanProperty<UserSettings>(_entities[1].properties[1]);
 }

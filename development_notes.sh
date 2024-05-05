@@ -14,6 +14,6 @@
 # - login via Firebase, protected routes, etc.
 # - advanced filters, shuffling
 # - edit word pair
-# - get rid of tabs for this app
-# - tests (for what?)
+# -  ✅ get rid of tabs in nav
+# - tests (for which parts?)
 # - simple stats page?

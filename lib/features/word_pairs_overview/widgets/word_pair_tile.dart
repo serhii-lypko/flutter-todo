@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../packages/data_provider/models/word_pair.dart';
+import '../../../packages/data_provider/models.dart';
 
 class WordPairListTile extends StatelessWidget {
   const WordPairListTile({

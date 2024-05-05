@@ -3,9 +3,9 @@ import 'package:bloc/bloc.dart';
 import 'word_pairs_overview_state.dart';
 import 'word_pairs_overview_event.dart';
 
-import '../../../packages/repository/repository.dart';
+import '../../../packages/repository/word_pairs_repository.dart';
 
-import '../../../packages/data_provider/models/word_pair.dart';
+import '../../../packages/data_provider/models.dart';
 
 class WordPairsOverviewBloc
     extends Bloc<WordPairsOverviewEvent, WordPairsOverviewState> {

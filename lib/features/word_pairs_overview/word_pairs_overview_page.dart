@@ -6,7 +6,7 @@ import 'bloc/word_pairs_overview_bloc.dart';
 import 'bloc/word_pairs_overview_event.dart';
 import 'bloc/word_pairs_overview_state.dart';
 
-import '../../packages/repository/repository.dart';
+import '../../packages/repository/word_pairs_repository.dart';
 
 import 'widgets/word_pair_tile.dart';
 import '../../shared/shared.dart';
