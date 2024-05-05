@@ -11,6 +11,9 @@ import '../../packages/repository/repository.dart';
 import 'widgets/word_pair_tile.dart';
 import '../../shared/shared.dart';
 
+// FIXME
+import './widgets/filter_button.dart';
+
 class WordPairsOverviewPage extends StatelessWidget {
   static const routeName = '/word-pairs-overview';
 
@@ -35,7 +38,11 @@ class WordPairsOverviewView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Word Pairs"),
-          actions: const [],
+          actions: const [
+            // FIXME
+            TodosOverviewFilterButton(),
+            TodosOverviewFilterButton(),
+          ],
         ),
         body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
           builder: (context, state) {
