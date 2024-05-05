@@ -9,9 +9,11 @@ class ObjectBoxDBProvider {
 
   late final Store store;
   late final Box<WordPair> wordPairBox;
+  late final Box<UserSettings> userSettingsBox;
 
   ObjectBoxDBProvider._create(this.store) {
     wordPairBox = Box<WordPair>(store);
+    userSettingsBox = Box<UserSettings>(store);
   }
 
   static Future<ObjectBoxDBProvider> create() async {

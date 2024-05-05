@@ -10,6 +10,11 @@ import 'packages/data_provider/database_provider.dart';
 import 'packages/repository/word_pairs_repository.dart';
 import 'packages/repository/settings_repository.dart';
 
+// TODO
+import './theme/bloc.dart';
+
+// TODO: how to implement app init? (load theme & stuff)
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppRouterConfig.instance;
@@ -56,13 +61,33 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouterConfig.router,
-      themeMode: ThemeMode.dark,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
+    return BlocProvider(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouterConfig.router,
+            theme: state.themeData,
+            // TODO
+            // darkTheme: ThemeData(
+            //   brightness: Brightness.dark,
+            // ),
+          );
+        },
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp.router(
+  //     debugShowCheckedModeBanner: false,
+  //     routerConfig: AppRouterConfig.router,
+  //     themeMode: ThemeMode.dark,
+  //     darkTheme: ThemeData(
+  //       brightness: Brightness.dark,
+  //     ),
+  //   );
+  // }
 }

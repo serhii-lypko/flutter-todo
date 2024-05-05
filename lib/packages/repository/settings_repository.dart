@@ -8,7 +8,10 @@ class SettingsRepository {
 
   final ObjectBoxDBProvider _dbProvider;
 
-  void getUserSettings() {
-    print('getUserSettings called repository --- [] ---');
+  Future<void> getUserSettings() async {
+    final settings = _dbProvider.userSettingsBox.getAll();
+
+    print('user settings repo: ');
+    print(settings);
   }
 }
