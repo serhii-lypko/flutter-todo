@@ -35,6 +35,10 @@ class ThemeToggled extends ThemeEvent {
   const ThemeToggled();
 }
 
+class ThemeInitiated extends ThemeEvent {
+  const ThemeInitiated();
+}
+
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
@@ -42,23 +46,32 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       : _repository = repository,
         super(ThemeState()) {
     on<ThemeToggled>(_themeToggled);
+    on<ThemeInitiated>(_themeInitiated);
   }
 
   final SettingsRepository _repository;
+
+  Future<void> _themeInitiated(
+    ThemeInitiated event,
+    Emitter<ThemeState> emit,
+  ) async {
+    final isDarkMode = await _repository.getSettings();
+
+    emit(state.copyWith(
+      themeData: isDarkMode ? ThemeData.dark() : ThemeData.light(),
+    ));
+  }
 
   Future<void> _themeToggled(
     ThemeToggled event,
     Emitter<ThemeState> emit,
   ) async {
-    print("Theme toggled");
-
-    var foo = await _repository.getUserSettings();
-
-    // Toggle between light and dark theme
     emit(state.copyWith(
       themeData: state.themeData.brightness == Brightness.dark
           ? ThemeData.light()
           : ThemeData.dark(),
     ));
+
+    await _repository.toggleTheme();
   }
 }

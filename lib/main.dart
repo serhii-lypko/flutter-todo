@@ -1,3 +1,6 @@
+// FIXME
+import './playground.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +20,9 @@ import './theme/bloc.dart';
 // including very first time run -> setting up settings in DB etc.
 
 Future<void> main() async {
+  // FIXME
+  playground();
+
   WidgetsFlutterBinding.ensureInitialized();
   AppRouterConfig.instance;
 
@@ -64,7 +70,8 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ThemeBloc(repository: context.read<SettingsRepository>()),
+          ThemeBloc(repository: context.read<SettingsRepository>())
+            ..add(const ThemeInitiated()),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
@@ -80,16 +87,4 @@ class AppView extends StatelessWidget {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp.router(
-  //     debugShowCheckedModeBanner: false,
-  //     routerConfig: AppRouterConfig.router,
-  //     themeMode: ThemeMode.dark,
-  //     darkTheme: ThemeData(
-  //       brightness: Brightness.dark,
-  //     ),
-  //   );
-  // }
 }
