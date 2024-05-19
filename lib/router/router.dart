@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// TODO: cenralized routes export from the featurs
-
-// TODO: improve routing organization
-import '../features/settings/settings_page.dart';
-import '../features/word_pairs_overview/word_pairs_overview_page.dart';
+import 'package:wise_repeat/pages/exports.dart';
 
 class AppRouterConfig {
   static AppRouterConfig get instance => _instance;
@@ -13,19 +9,18 @@ class AppRouterConfig {
 
   static late final GoRouter router;
 
-  static final GlobalKey<NavigatorState> parentNavigatorKey =
-      GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> parentNavigatorKey = GlobalKey<NavigatorState>();
 
   AppRouterConfig._internal() {
     router = GoRouter(
       navigatorKey: parentNavigatorKey,
-      initialLocation: WordPairsOverviewPage.routeName,
+      initialLocation: HomePage.routeName,
       routes: [
         GoRoute(
-          path: WordPairsOverviewPage.routeName,
+          path: HomePage.routeName,
           pageBuilder: (context, GoRouterState state) {
             return getPage(
-              child: const WordPairsOverviewPage(),
+              child: const HomePage(),
               state: state,
             );
           },
