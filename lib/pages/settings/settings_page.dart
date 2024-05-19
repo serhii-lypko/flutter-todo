@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:wise_repeat/shared/bloc/exports.dart';
+
+import './widgets/exports.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -8,34 +12,35 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final themeBloc = BlocProvider.of<ThemeBloc>(context);
+    final themeOption = context.select((SettingsCubit cubit) => cubit.state.themeOption);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
       ),
-      // body: BlocBuilder<ThemeBloc, ThemeState>(
-      //   builder: (context, state) {
-      //     return Center(
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           const Padding(
-      //             padding: EdgeInsets.all(8.0),
-      //             child: Text(
-      //               'Settings',
-      //               textAlign: TextAlign.center,
-      //             ),
-      //           ),
-      //           ElevatedButton(
-      //             onPressed: () => themeBloc.add(const ThemeToggled()),
-      //             child: const Text('TOGGLE THEME'),
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //   },
-      // ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(24.0, 32.0, 16.0, 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Theme',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            ThemePicker(
+              activeOption: themeOption,
+              onChanged: (value) => context.read<SettingsCubit>().setTheme(value),
+            ),
+            const SizedBox(height: 32),
+            // Font Size section
+            Text(
+              'Font Size',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Container(),
+          ],
+        ),
+      ),
     );
   }
 }

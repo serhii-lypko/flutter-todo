@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'router/router.dart';
-
 import 'app_bloc_observer.dart';
+import 'package:wise_repeat/shared/bloc/exports.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  HydratedBloc.storage =
+      await HydratedStorage.build(storageDirectory: await getApplicationDocumentsDirectory());
+
   AppRouterConfig.instance;
 
   Bloc.observer = const AppBlocObserver();
@@ -23,9 +29,14 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouterConfig.router,
-    );
+    return BlocProvider(
+        create: (_) => SettingsCubit(),
+        child: BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouterConfig.router,
+            theme: state.themeOption.toThemeData(context),
+          );
+        }));
   }
 }

@@ -23,28 +23,6 @@ class HomePage extends StatelessWidget {
             SettingsLinkButton(),
           ],
         ),
-        // body: BlocBuilder<WordPairsOverviewBloc, WordPairsOverviewState>(
-        //   builder: (context, state) {
-        //     return CupertinoScrollbar(
-        //       child: Padding(
-        //         padding: const EdgeInsets.only(top: 15.0),
-        //         child: ListView(
-        //           children: [
-        //             for (final wordPair in state.wordPairs)
-        //               WordPairListTile(
-        //                 wordPair: wordPair,
-        //                 onDismissed: (_) {
-        //                   BlocProvider.of<WordPairsOverviewBloc>(context)
-        //                       .add(WordPairDismissed(wordPair.id));
-        //                 },
-        //                 onTap: () {},
-        //               ),
-        //           ],
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           shape: const CircleBorder(),
@@ -55,6 +33,8 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             final TextEditingController leftController = TextEditingController();
             final TextEditingController rightController = TextEditingController();
+
+            //
           },
         ));
   }
