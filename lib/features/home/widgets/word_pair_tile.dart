@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 // import '../../../packages/data_provider/models.dart';
 
+import 'package:wise_repeat/shared/models/exports.dart';
+
 class WordPairListTile extends StatelessWidget {
   const WordPairListTile({
-    // required this.wordPair,
+    required this.wordPair,
     Key? key,
     this.onDismissed,
     this.onTap,
   }) : super(key: key);
 
-  // final WordPair wordPair;
+  final WordPair wordPair;
   final DismissDirectionCallback? onDismissed;
   final VoidCallback? onTap;
 

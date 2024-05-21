@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:wise_repeat/shared/bloc/exports.dart';
 
-import './widgets/exports.dart';
+import 'widgets/exports.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

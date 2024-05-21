@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// TODO: location
-enum TodosViewFilter { all, activeOnly, completedOnly }
+enum ViewFilter { all, activeOnly, completedOnly }
 
-extension TodosViewFilterX on TodosViewFilter {
-  bool apply() {
-    return false;
-  }
-}
+// extension FilterButton on ViewFilter {
+//   bool apply() {
+//     return false;
+//   }
+// }
 
 class TodosOverviewFilterButton extends StatelessWidget {
   const TodosOverviewFilterButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<TodosViewFilter>(
+    return PopupMenuButton<ViewFilter>(
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
@@ -26,7 +25,7 @@ class TodosOverviewFilterButton extends StatelessWidget {
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            value: TodosViewFilter.all,
+            value: ViewFilter.all,
             child: Text("hello"),
           ),
         ];

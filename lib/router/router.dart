@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:wise_repeat/pages/exports.dart';
+import 'package:wise_repeat/features/exports.dart';
 
 class AppRouterConfig {
   static AppRouterConfig get instance => _instance;

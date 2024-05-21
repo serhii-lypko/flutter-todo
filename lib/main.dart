@@ -31,6 +31,8 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => SettingsCubit(),
+
+        // TODO: is it neccessary to use BlocBuilder here?
         child: BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
