@@ -19,10 +19,12 @@ class CustomTextField extends StatelessWidget {
         color: CupertinoColors.systemGrey,
       ),
       style: const TextStyle(
-        color: CupertinoColors.white,
+        color: CupertinoColors.black,
       ),
       decoration: BoxDecoration(
-        color: CupertinoColors.black,
+        border: Border.all(
+          color: CupertinoColors.black,
+        ),
         borderRadius: BorderRadius.circular(7.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 15.0),

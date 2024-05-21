@@ -19,8 +19,7 @@ class WordPairListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      // key: Key('wordPairListTile_dismissible_${wordPair.id}'),
-      key: Key('wordPairListTile_dismissible_'),
+      key: Key('wordPairListTile_dismissible_${wordPair.id}'),
       onDismissed: onDismissed,
       direction: DismissDirection.endToStart,
       background: Container(
@@ -28,7 +27,7 @@ class WordPairListTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: const Icon(
           Icons.delete,
-          color: Color(0xAAFFFFFF),
+          color: Colors.black,
         ),
       ),
       child: Card(
@@ -38,18 +37,18 @@ class WordPairListTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Text(
-              //   wordPair.left,
-              //   maxLines: 1,
-              //   overflow: TextOverflow.ellipsis,
-              //   style: const TextStyle(fontSize: 18.0),
-              // ),
-              // Text(
-              //   wordPair.right,
-              //   maxLines: 1,
-              //   overflow: TextOverflow.ellipsis,
-              //   style: const TextStyle(fontSize: 18.0),
-              // ),
+              Text(
+                wordPair.left,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18.0),
+              ),
+              Text(
+                wordPair.right,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18.0),
+              ),
             ],
           ),
         ),

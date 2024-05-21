@@ -6,7 +6,29 @@ part 'word_pairs_event.dart';
 part 'word_pairs_state.dart';
 
 class WordPairsBloc extends HydratedBloc<WordPairsEvent, WordPairsState> {
-  WordPairsBloc() : super(const WordPairsState());
+  WordPairsBloc() : super(const WordPairsState()) {
+    on<WordPairAdded>(_wordPairAdded);
+    on<WordPairDismissed>(_wordPairDismissed);
+  }
+
+  Future<void> _wordPairAdded(
+    WordPairAdded event,
+    Emitter<WordPairsState> emit,
+  ) async {
+    final updatedWordPairs = List<WordPair>.from(state.wordPairs)..add(event.pair);
+
+    emit(state.copyWith(wordPairs: () => updatedWordPairs));
+  }
+
+  Future<void> _wordPairDismissed(
+    WordPairDismissed event,
+    Emitter<WordPairsState> emit,
+  ) async {
+    final updatedWordPairs =
+        state.wordPairs.where((wordPair) => wordPair.id != event.recordId).toList();
+
+    emit(state.copyWith(wordPairs: () => updatedWordPairs));
+  }
 
   @override
   WordPairsState fromJson(Map<String, dynamic> json) {
